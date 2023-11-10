@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { IoIosArrowRoundBack, IoIosMenu, IoIosPerson } from "react-icons/io";
+import {
+  IoIosArrowRoundBack,
+  IoIosMenu,
+  IoIosPerson,
+  IoIosText,
+} from "react-icons/io";
 import { useLocation, useNavigate } from "react-router";
 
 const navList = [
   {
-    name: "User",
+    name: "Users",
     icon: <IoIosPerson className="w-12 h-12" />,
     pathname: "/users",
   },
   {
-    name: "Example",
-    icon: <IoIosMenu className="w-12 h-12" />,
-    pathname: "/example",
+    name: "Comments",
+    icon: <IoIosText className="w-12 h-12" />,
+    pathname: "/comments",
   },
   {
     name: "Example",
@@ -35,7 +40,7 @@ const AdminSideBar = () => {
         onClick={() => setShowNavBar(true)}
       />
       <div
-        className={`w-[26rem] h-screen bg-white sm:shadow-md p-12 lg:block shadow-2xl fixed top-0 left-0 ${
+        className={`w-[26rem] h-screen bg-white p-12 lg:block fixed top-0 left-0 ${
           showNavBar ? "" : "hidden"
         } lg:relative`}
       >

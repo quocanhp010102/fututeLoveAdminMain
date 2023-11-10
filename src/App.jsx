@@ -24,6 +24,7 @@ import Video from "./ver2/components/Video";
 import AdminSignin from "./ver2/page/admin/AdminSignin";
 import ListUser from "./ver2/page/admin/ListUser";
 import AdminMainLayout from "./ver2/layouts/AdminMainLayout";
+import ListComment from "./ver2/page/admin/ListComment";
 
 function App() {
   const navigate = useNavigate();
@@ -79,6 +80,7 @@ function App() {
     <Routes>
       <Route path="" element={<AdminMainLayout />}>
         <Route path="users" element={<ListUser />} />
+        <Route path="comments" element={<ListComment />} />
         {/* <Route index element={<Historyv2 />} />
         <Route path="home" element={<Historyv2 />} />
         <Route path="event/:id" element={<Historyv2 />} />

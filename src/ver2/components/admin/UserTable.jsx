@@ -2,12 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { IoIosMore } from "react-icons/io";
 import Switch from "react-switch";
 import MoreOption from "./MoreOption";
+import ConfirmModel from "./ConfirmModel";
 
 const UserTable = (props) => {
   const [checkedUsers, setCheckedUsers] = useState([]);
   const [isCheckedAll, setIsCheckedAll] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [showMoreAtIndex, setShowMoreAtIndex] = useState(-1);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(null);
 
   const isMobile = width <= 768;
 
@@ -63,8 +66,25 @@ const UserTable = (props) => {
     }
   }, [isCheckedAll, props.data]);
 
+  const onDelete = (id) => {
+    setShowConfirm(true);
+    setIdToDelete(id);
+  };
+
+  const confirmDelete = async (confirm) => {
+    if (confirm && idToDelete) {
+      await props.deleteUser(idToDelete);
+      setShowConfirm(false);
+      setIdToDelete(null);
+    } else {
+      setShowConfirm(false);
+      setIdToDelete(null);
+    }
+  };
+
   return (
     <>
+      {showConfirm && <ConfirmModel confirm={confirmDelete} />}
       <div className="flex flex-col bg-white w-[95%] rounded-xl mt-28 p-4 lg:mt-20 sm:p-12">
         <div className="grid grid-cols-12 items-center rounded-xl bg-[#E2E8F0] sm:p-8 mb-6 text-3xl">
           {/* <input
@@ -151,7 +171,7 @@ const UserTable = (props) => {
                 <div ref={menuRef}>
                   <MoreOption
                     userData={user}
-                    hanldeDelete={() => props.deleteUser(user.id_user)}
+                    hanldeDelete={() => onDelete(user.id_user)}
                   />
                 </div>
               )}

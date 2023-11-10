@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useCallback, useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import AdminSubheader from "../../components/admin/AdminSubheader";
+import ConfirmModel from "../../components/admin/ConfirmModel";
 
 const ListUser = () => {
   const [isLoading, setIsLoading] = useState(false);
