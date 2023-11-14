@@ -113,6 +113,7 @@ const CommentTable = (props) => {
               </span>
               <span className="text-xs sm:text-3xl col-span-2 lg:col-span-2">
                 {comment.IP_Comment}
+                <p>{comment.location}</p>
               </span>
               <span className="text-xs sm:text-3xl col-span-2 lg:col-span-2 col-start-9">
                 {convertTime(comment.thoi_gian_release)}

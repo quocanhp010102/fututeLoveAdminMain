@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   IoIosArrowRoundBack,
+  IoIosCalendar,
   IoIosMenu,
   IoIosPerson,
   IoIosText,
@@ -19,9 +20,9 @@ const navList = [
     pathname: "/comments",
   },
   {
-    name: "Example",
-    icon: <IoIosMenu className="w-12 h-12" />,
-    pathname: "/example",
+    name: "Events",
+    icon: <IoIosCalendar className="w-12 h-12" />,
+    pathname: "/events",
   },
 ];
 

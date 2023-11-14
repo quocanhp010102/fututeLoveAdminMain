@@ -25,6 +25,7 @@ import AdminSignin from "./ver2/page/admin/AdminSignin";
 import ListUser from "./ver2/page/admin/ListUser";
 import AdminMainLayout from "./ver2/layouts/AdminMainLayout";
 import ListComment from "./ver2/page/admin/ListComment";
+import ListEvents from "./ver2/page/admin/ListEvents";
 
 function App() {
   const navigate = useNavigate();
@@ -79,6 +80,7 @@ function App() {
       <Route path="" element={<AdminMainLayout />}>
         <Route path="users" element={<ListUser />} />
         <Route path="comments" element={<ListComment />} />
+        <Route path="events" element={<ListEvents />} />
         {/* <Route index element={<Historyv2 />} />
         <Route path="home" element={<Historyv2 />} />
         <Route path="event/:id" element={<Historyv2 />} />
