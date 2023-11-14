@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  IoIosAddCircleOutline,
   IoIosArrowRoundBack,
   IoIosCalendar,
   IoIosMenu,
@@ -20,10 +21,15 @@ const navList = [
     pathname: "/comments",
   },
   {
-    name: "Events",
+    name: "Saved events",
     icon: <IoIosCalendar className="w-12 h-12" />,
-    pathname: "/events",
+    pathname: "/saved-events",
   },
+  // {
+  //   name: "Added events",
+  //   icon: <IoIosAddCircleOutline className="w-12 h-12" />,
+  //   pathname: "/add-events",
+  // },
 ];
 
 const AdminSideBar = () => {
