@@ -45,9 +45,7 @@ function App() {
 
   // auto direct page users when signed in
   useEffect(() => {
-    if (user) {
-      navigate("/users");
-    } else {
+    if (!user) {
       navigate("/login");
     }
   }, []);

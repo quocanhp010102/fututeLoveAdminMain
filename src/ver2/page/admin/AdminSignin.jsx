@@ -41,12 +41,9 @@ const AdminSignin = () => {
         );
         if (response.data.message) {
           toast.success(response.data.message);
+          localStorage.setItem("user-info", JSON.stringify(response.data.user));
           setTimeout(() => {
-            localStorage.setItem(
-              "user-info",
-              JSON.stringify(response.data.user)
-            );
-            window.location.reload();
+            navigate("/users");
           }, 1200);
         }
         setLoading(false);

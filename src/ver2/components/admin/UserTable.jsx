@@ -85,7 +85,7 @@ const UserTable = (props) => {
   return (
     <>
       {showConfirm && <ConfirmModel confirm={confirmDelete} />}
-      <div className="flex flex-col bg-white w-[95%] rounded-xl mt-28 p-4 lg:mt-20 sm:p-12">
+      <div className="flex flex-col bg-white w-[95%] rounded-xl mt-28 p-4 lg:mt-20 sm:p-12 mb-[40%]">
         <div className="grid grid-cols-12 items-center rounded-xl bg-[#E2E8F0] sm:p-8 mb-6 text-3xl">
           {/* <input
             checked={isCheckedAll}

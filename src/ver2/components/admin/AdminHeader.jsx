@@ -2,16 +2,21 @@ import { useNavigate } from "react-router";
 import img from "../image/Screenshot_1.png";
 import { Link } from "react-router-dom";
 import { IoIosNotifications } from "react-icons/io";
-import { SlMenu } from "react-icons/sl";
-import { useState } from "react";
+// import { SlMenu } from "react-icons/sl";
+import { useEffect, useState } from "react";
 import AdminAvtMenu from "./AdminAvtMenu";
-
-const user = JSON.parse(window.localStorage.getItem("user-info"));
 
 const AdminHeader = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
-
+  const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(window.localStorage.getItem("user-info"));
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
 
   const BackHome = () => {
     navigate("users");
@@ -41,7 +46,7 @@ const AdminHeader = () => {
           </div>
           <div>
             <img
-              src={user.link_avatar}
+              src={currentUser.link_avatar}
               className="w-24 h-24 rounded-full mr-6 cursor-pointer"
               onClick={() => setIsShowMenu(!isShowMenu)}
               alt="avatar"
