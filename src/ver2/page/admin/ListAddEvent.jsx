@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import axios from "axios";
 import { toast } from "react-toastify";
-import SavedEventTable from "../../components/admin/SavedEvent/SavedEventTable";
+import AddEventTable from "../../components/admin/addEvent/AddEventTable";
 
-const ListSavedEvent = () => {
+const ListAddEvent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [events, setEvents] = useState([]);
 
@@ -16,7 +16,7 @@ const ListSavedEvent = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "http://14.231.223.63:1995/api/saved-sukiens"
+        "http://14.231.223.63:1995/api/add-sukiens"
       );
       if (response.data.message) {
         toast.error(response.data.message);
@@ -35,10 +35,10 @@ const ListSavedEvent = () => {
     <>
       {isLoading && <Loading />}
       <div className="flex justify-center">
-        <SavedEventTable events={events} />
+        <AddEventTable events={events} />
       </div>
     </>
   );
 };
 
-export default ListSavedEvent;
+export default ListAddEvent;

@@ -13,7 +13,7 @@ const navList = [
   {
     name: "Users",
     icon: <IoIosPerson className="w-12 h-12" />,
-    pathname: "/users",
+    pathname: "/",
   },
   {
     name: "Comments",
@@ -25,11 +25,11 @@ const navList = [
     icon: <IoIosCalendar className="w-12 h-12" />,
     pathname: "/saved-events",
   },
-  // {
-  //   name: "Added events",
-  //   icon: <IoIosAddCircleOutline className="w-12 h-12" />,
-  //   pathname: "/add-events",
-  // },
+  {
+    name: "Added events",
+    icon: <IoIosAddCircleOutline className="w-12 h-12" />,
+    pathname: "/add-events",
+  },
 ];
 
 const AdminSideBar = () => {

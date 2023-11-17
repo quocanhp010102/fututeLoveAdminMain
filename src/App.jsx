@@ -26,6 +26,8 @@ import ListUser from "./ver2/page/admin/ListUser";
 import AdminMainLayout from "./ver2/layouts/AdminMainLayout";
 import ListComment from "./ver2/page/admin/ListComment";
 import ListEvents from "./ver2/page/admin/ListSavedEvents";
+import ListSavedEvent from "./ver2/page/admin/ListSavedEvents";
+import ListAddEvent from "./ver2/page/admin/ListAddEvent";
 
 function App() {
   const navigate = useNavigate();
@@ -78,9 +80,10 @@ function App() {
   return (
     <Routes>
       <Route path="" element={<AdminMainLayout />}>
-        <Route path="users" element={<ListUser />} />
+        <Route path="/" element={<ListUser />} />
         <Route path="comments" element={<ListComment />} />
-        <Route path="saved-events" element={<ListEvents />} />
+        <Route path="saved-events" element={<ListSavedEvent />} />
+        <Route path="add-events" element={<ListAddEvent />} />
         {/* <Route index element={<Historyv2 />} />
         <Route path="home" element={<Historyv2 />} />
         <Route path="event/:id" element={<Historyv2 />} />
