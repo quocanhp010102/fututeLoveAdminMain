@@ -6,13 +6,14 @@ import {
   IoIosMenu,
   IoIosPerson,
   IoIosText,
+  IoMdAnalytics,
 } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router";
 
 const navList = [
   {
     name: "Overview",
-    icon: <IoIosPerson className="w-12 h-12" />,
+    icon: <IoMdAnalytics className="w-12 h-12" />,
     pathname: "/",
   },
   {
