@@ -81,7 +81,7 @@ function App() {
     <Routes>
       <Route path="" element={<AdminMainLayout />}>
         <Route path="users" element={<ListUser />} />
-        <Route path="overview" element={<Overview />} />
+        <Route path="/" element={<Overview />} />
         <Route path="comments" element={<ListComment />} />
         <Route path="saved-events" element={<ListSavedEvent />} />
         <Route path="add-events" element={<ListAddEvent />} />

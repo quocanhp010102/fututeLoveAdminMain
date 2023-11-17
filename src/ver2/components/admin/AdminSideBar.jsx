@@ -13,12 +13,12 @@ const navList = [
   {
     name: "Overview",
     icon: <IoIosPerson className="w-12 h-12" />,
-    pathname: "/overview",
+    pathname: "/",
   },
   {
     name: "Users",
     icon: <IoIosPerson className="w-12 h-12" />,
-    pathname: "/",
+    pathname: "/users",
   },
   {
     name: "Comments",
