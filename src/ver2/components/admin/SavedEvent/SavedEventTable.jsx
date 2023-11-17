@@ -1,6 +1,6 @@
 import SavedEventTab from "./SavedEventTab";
-import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 
 const SavedEventTable = (props) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -28,15 +28,15 @@ const SavedEventTable = (props) => {
 
         {/* Phân trang */}
         <ReactPaginate
-          previousLabel={'Previous'}
-          nextLabel={'Next'}
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
           pageCount={pageCount}
           onPageChange={changePage}
-          containerClassName={'pagination'}
-          previousLinkClassName={'pagination__link'}
-          nextLinkClassName={'pagination__link'}
-          disabledClassName={'pagination__link--disabled'}
-          activeClassName={'pagination__link--active'}
+          containerClassName={"pagination"}
+          previousLinkClassName={"pagination__link"}
+          nextLinkClassName={"pagination__link"}
+          disabledClassName={"pagination__link--disabled"}
+          activeClassName={"pagination__link--active"}
         />
       </div>
     </>

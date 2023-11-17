@@ -25,13 +25,9 @@ import AdminSignin from "./ver2/page/admin/AdminSignin";
 import ListUser from "./ver2/page/admin/ListUser";
 import AdminMainLayout from "./ver2/layouts/AdminMainLayout";
 import ListComment from "./ver2/page/admin/ListComment";
-import ListEvents from "./ver2/page/admin/ListSavedEvents";
-<<<<<<< Updated upstream
 import ListSavedEvent from "./ver2/page/admin/ListSavedEvents";
 import ListAddEvent from "./ver2/page/admin/ListAddEvent";
-=======
 import Overview from "./ver2/components/admin/overview/Overview";
->>>>>>> Stashed changes
 
 function App() {
   const navigate = useNavigate();
@@ -84,12 +80,8 @@ function App() {
   return (
     <Routes>
       <Route path="" element={<AdminMainLayout />}>
-<<<<<<< Updated upstream
-        <Route path="/" element={<ListUser />} />
-=======
         <Route path="users" element={<ListUser />} />
         <Route path="overview" element={<Overview />} />
->>>>>>> Stashed changes
         <Route path="comments" element={<ListComment />} />
         <Route path="saved-events" element={<ListSavedEvent />} />
         <Route path="add-events" element={<ListAddEvent />} />
