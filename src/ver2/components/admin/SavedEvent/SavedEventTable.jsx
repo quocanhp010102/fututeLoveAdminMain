@@ -4,11 +4,11 @@ import ReactPaginate from "react-paginate";
 
 const SavedEventTable = (props) => {
   const [pageNumber, setPageNumber] = useState(0);
-  const eventsPerPage = 1; // Số sự kiện trên mỗi trang
+  const eventsPerPage = 20; // Số sự kiện trên mỗi trang
   const pagesVisited = pageNumber * eventsPerPage;
 
   const displayEvents = props.events
-    .slice(pagesVisited, pagesVisited + eventsPerPage)
+    .slice(pageNumber, pageNumber + eventsPerPage)
     .map((event) => (
       <div key={event.id_saved} className="mb-4">
         <SavedEventTab event={event} />
@@ -19,6 +19,7 @@ const SavedEventTable = (props) => {
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
+    props.handleChangePage(selected + 1);
   };
 
   return (
@@ -32,6 +33,7 @@ const SavedEventTable = (props) => {
           nextLabel={"Next"}
           pageCount={pageCount}
           onPageChange={changePage}
+          pageRangeDisplayed={5}
           containerClassName={"pagination"}
           previousLinkClassName={"pagination__link"}
           nextLinkClassName={"pagination__link"}
