@@ -182,4 +182,125 @@ html *::-webkit-scrollbar-track {
   }
 }
 
+/*slide phan trang saveEventTable*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+.pagination li{
+  padding: 10px;
+}
+.pagination__link {
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-decoration: none;
+  color: #007bff;
+}
 
+.pagination__link--disabled {
+  
+  color: #ccc;
+  pointer-events: none;
+}
+
+.pagination__link--active {
+ 
+  background-color: #007bff;
+  color: #fff;
+}
+/*slide phan trang saveEventTable*/
+
+
+.overview1{
+  padding: 5px;
+  
+}
+.overview1-content{
+  width: 25%;
+  background: #fff;
+  border-right: 1px solid #ccc;
+}
+.overview1-td{
+  padding: 0px 0 10px 0;
+  
+}
+.overview1-td h3{
+  font-weight: 100;
+  color: rgb(125, 121, 121);
+}
+.overview1-center{
+  padding: 10px 0;
+}
+.overview1-center h1{
+   font-size: 30px;
+}
+.overview1-center h4{
+  font-weight: 100;
+  color: rgb(125, 121, 121);
+}
+.overview1-center h1{
+  display: flex;
+  gap: 30px;
+}
+.overview1_tl{
+  background-color: rgb(221, 227, 232);
+  border-radius: 10px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+}
+.overview1_tl span{
+  
+}
+.overview2{
+  background-color: #fff;
+  margin: 10px 5px;
+  padding: 10px;
+}
+.overview2-td{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.overview2Content-td{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.overview2Content-tdpt{
+   display: flex;
+   justify-content: space-between;
+}
+.overview2Content-tdpt .p1{
+
+}
+.overview2Content-tdpt .p2{
+
+}
+.overview2Content-pt{
+   display: flex;
+}
+.overview2Content-pt .pt-left{
+  background-color: #007bff;
+  height: 4px;
+  
+}
+.overview2Content-pt .pt-right{
+  background-color: #d9d9d9;
+  height: 4px;
+}
+.w-30{
+  width: 30%;
+}
+.overview2Content{
+  margin-top: 30px;
+  background-color: #ccc;
+  border-radius: 20px;
+}

@@ -11,6 +11,11 @@ import { useLocation, useNavigate } from "react-router";
 
 const navList = [
   {
+    name: "Overview",
+    icon: <IoIosPerson className="w-12 h-12" />,
+    pathname: "/overview",
+  },
+  {
     name: "Users",
     icon: <IoIosPerson className="w-12 h-12" />,
     pathname: "/",
