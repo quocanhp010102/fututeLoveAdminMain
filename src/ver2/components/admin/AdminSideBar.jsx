@@ -36,6 +36,11 @@ const navList = [
     icon: <IoIosAddCircleOutline className="w-12 h-12" />,
     pathname: "/add-events",
   },
+  {
+    name: "Inbox",
+    icon: <IoMdAnalytics className="w-12 h-12" />,
+    pathname: "/inbox",
+  },
 ];
 
 const AdminSideBar = () => {

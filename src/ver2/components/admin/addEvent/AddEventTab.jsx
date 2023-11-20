@@ -12,7 +12,7 @@ import vec4 from "../../image/tron2.png";
 
 const AddEventTab = (props) => {
   const eventDetail = props.event;
-
+  console.log(eventDetail.link_video);
   return (
     <>
       <div
@@ -31,7 +31,7 @@ const AddEventTab = (props) => {
               ></div>
               <div
                 style={{
-                  backgroundImage: `url(${eventDetail.link_nam_goc})`,
+                  backgroundImage: `url(${eventDetail.link_img})`,
                   borderRadius: "50%",
                   backgroundSize: "cover",
 

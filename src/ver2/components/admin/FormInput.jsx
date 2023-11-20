@@ -75,7 +75,7 @@ const FormInput = (props) => {
             formData
           );
         } else {
-          await uploadImg();
+          //await uploadImg();
           response = await axios.post(`${server}/api/users`, {
             link_avatar: `https://i.ibb.co/vjVvZL5/${imageName}`,
             user_name: user_name,
@@ -87,6 +87,7 @@ const FormInput = (props) => {
         }
 
         if (response.data.message) {
+          alert("hewlooo")
           toast.success(response.data.message);
         }
         isLoading(false);

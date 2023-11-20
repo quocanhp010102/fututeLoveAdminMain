@@ -1,8 +1,15 @@
 import SavedEventTab from "./SavedEventTab";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import SavedEventAdd from "./SavedEventAdd";
+import SaveEventSearch from "./SaveEventSearch";
 
 const SavedEventTable = (props) => {
+  const [showForm, setShowForm] = useState(false);
+
+  const handleShowForm = (isShow) => {
+    setShowForm(isShow);
+  };
   const [pageNumber, setPageNumber] = useState(0);
   const eventsPerPage = 1; // Số sự kiện trên mỗi trang
   const pagesVisited = pageNumber * eventsPerPage;
@@ -23,6 +30,20 @@ const SavedEventTable = (props) => {
 
   return (
     <>
+    <SaveEventSearch/>
+    <div className="them-saved-sukien">
+    <button
+          className="d-block text-3xl text-white bg-blue-500 py-4 px-10 "
+          onClick={() => {
+            setShowForm(true);
+          }}
+        >
+          + New saved-sukiens
+        </button>
+    </div>
+     
+      <div className="themsukienduoi">
+      <SavedEventAdd isShow={showForm} handleShowForm={handleShowForm} />
       <div className="bg-white mb-[40%] w-[95%] rounded-xl mt-28 p-4 lg:mt-20 sm:p-12">
         {displayEvents}
 
@@ -39,6 +60,8 @@ const SavedEventTable = (props) => {
           activeClassName={"pagination__link--active"}
         />
       </div>
+      </div>
+     
     </>
   );
 };
