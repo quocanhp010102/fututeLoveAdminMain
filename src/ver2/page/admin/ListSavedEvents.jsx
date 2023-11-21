@@ -3,6 +3,8 @@ import Loading from "../../components/Loading";
 import axios from "axios";
 import { toast } from "react-toastify";
 import SavedEventTable from "../../components/admin/SavedEvent/SavedEventTable";
+import SaveEventSearch from "../../components/admin/SavedEvent/SaveEventSearch";
+import SavedEventAdd from "../../components/admin/SavedEvent/SavedEventAdd";
 
 const ListSavedEvent = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,10 +15,15 @@ const ListSavedEvent = () => {
     payload: [],
   });
   const [events, setEvents] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+
+  const handleShowForm = (isShow) => {
+    setShowForm(isShow);
+  };
 
   useEffect(() => {
-    // getEventPerPage(1);
-    getAllEvent();
+    getEventPerPage(1);
+    // getAllEvent();
   }, []);
 
   const getEventPerPage = useCallback(async (page) => {
@@ -60,19 +67,31 @@ const ListSavedEvent = () => {
   return (
     <>
       {isLoading && <Loading />}
-      {/* {pageData.payload.length > 0 && (
+      <SaveEventSearch />
+      <div className="them-saved-sukien">
+        <button
+          className="d-block text-3xl text-white bg-blue-500 py-4 px-10 "
+          onClick={() => {
+            setShowForm(true);
+          }}
+        >
+          + New saved-sukiens
+        </button>
+      </div>
+      <SavedEventAdd isShow={showForm} handleShowForm={handleShowForm} />
+      {pageData.payload.length > 0 && (
         <div className="flex justify-center">
           <SavedEventTable
             events={pageData}
             handleChangePage={getEventPerPage}
           />
         </div>
-      )} */}
-      {events.length > 0 && (
+      )}
+      {/* {events.length > 0 && (
         <div className="flex justify-center">
           <SavedEventTable events={events} handleChangePage={getEventPerPage} />
         </div>
-      )}
+      )} */}
     </>
   );
 };

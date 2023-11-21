@@ -9,10 +9,10 @@ const ListAddEvent = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    getAllComments();
+    getAllAddEvent();
   }, []);
 
-  const getAllComments = useCallback(async () => {
+  const getAllAddEvent = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
