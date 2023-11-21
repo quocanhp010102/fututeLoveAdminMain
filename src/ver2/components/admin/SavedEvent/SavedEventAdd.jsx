@@ -1,97 +1,95 @@
-import axios from 'axios';
-import { parse } from 'date-fns';
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
-import { IoIosClose } from 'react-icons/io';
+import axios from "axios";
+import { parse } from "date-fns";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { IoIosClose } from "react-icons/io";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-const SavedEventAdd =  (props) => {
+const SavedEventAdd = (props) => {
   const [fileInputs, setFileInputs] = useState({
     input1: null,
     input2: null,
     input3: null,
-    input4:null,
-    input5:null
+    input4: null,
+    input5: null,
     // Thêm các ô input file khác nếu cần
   });
-const [imageSrc,setImageSrc]=useState(null);
-const [imageName, setImageName] = useState("");
+  const [imageSrc, setImageSrc] = useState(null);
+  const [imageName, setImageName] = useState("");
 
-//     id_saved: str
-// const [id_saved,setId_saved]=useState('');
-// link_nam_goc: str
-const [link_nam_goc,setLink_nam_goc]=useState('')
-// link_nu_goc: str
-const [link_nu_goc,setLink_nu_goc]=useState('')
+  //     id_saved: str
+  // const [id_saved,setId_saved]=useState('');
+  // link_nam_goc: str
+  const [link_nam_goc, setLink_nam_goc] = useState("");
+  // link_nu_goc: str
+  const [link_nu_goc, setLink_nu_goc] = useState("");
 
-// link_nam_chua_swap: str
-const [link_nam_chua_swap,setLink_nam_chua_swap]=useState('')
-// link_nu_chua_swap: str
-const [link_nu_chua_swap,setLink_nu_chua_swap]=useState('')
-// link_da_swap: str
-const [link_da_swap,setLink_da_swap]=useState('')
-// thoigian_swap: str
-const [thoigian_swap,setThoigian_swap]=useState('')
-// ten_su_kien: str
-const [ten_su_kien,setTen_su_kien]=useState('')
-// noidung_su_kien: str
-const [noidung_su_kien,setNoidung_su_kien]=useState('')
-// id_toan_bo_su_kien: str
-const [id_toan_bo_su_kien,setId_toan_bo_su_kien]=useState('')
-// so_thu_tu_su_kien: int
-const [so_thu_tu_su_kien,setSo_thu_tu_su_kien]=useState('')
-// thoigian_sukien: str
-const [thoigian_sukien,setThoigian_sukien]=useState('')
-// device_them_su_kien: str
-const [device_them_su_kien,setDevice_them_su_kien]=useState('')
-// ip_them_su_kien: str
-const [ip_them_su_kien,setIp_them_su_kien]=useState('')
-// id_user: int
-const [id_user,setId_user]=useState('')
-// tomLuocText: str
-const [tomLuocText,setTomluocText]=useState('')
-// ten_nam: str
-const [ten_nam,setTen_nam]=useState('')
-// ten_nu: str
-const [ten_nu,setTen_nu]=useState('')
-// id_template: int
-const [id_template,setId_template]=useState('')
-// phantram_loading: int
-const [phantram_loading,setPhantram_loading]=useState('')
+  // link_nam_chua_swap: str
+  const [link_nam_chua_swap, setLink_nam_chua_swap] = useState("");
+  // link_nu_chua_swap: str
+  const [link_nu_chua_swap, setLink_nu_chua_swap] = useState("");
+  // link_da_swap: str
+  const [link_da_swap, setLink_da_swap] = useState("");
+  // thoigian_swap: str
+  const [thoigian_swap, setThoigian_swap] = useState("");
+  // ten_su_kien: str
+  const [ten_su_kien, setTen_su_kien] = useState("");
+  // noidung_su_kien: str
+  const [noidung_su_kien, setNoidung_su_kien] = useState("");
+  // id_toan_bo_su_kien: str
+  const [id_toan_bo_su_kien, setId_toan_bo_su_kien] = useState("");
+  // so_thu_tu_su_kien: int
+  const [so_thu_tu_su_kien, setSo_thu_tu_su_kien] = useState("");
+  // thoigian_sukien: str
+  const [thoigian_sukien, setThoigian_sukien] = useState("");
+  // device_them_su_kien: str
+  const [device_them_su_kien, setDevice_them_su_kien] = useState("");
+  // ip_them_su_kien: str
+  const [ip_them_su_kien, setIp_them_su_kien] = useState("");
+  // id_user: int
+  const [id_user, setId_user] = useState("");
+  // tomLuocText: str
+  const [tomLuocText, setTomluocText] = useState("");
+  // ten_nam: str
+  const [ten_nam, setTen_nam] = useState("");
+  // ten_nu: str
+  const [ten_nu, setTen_nu] = useState("");
+  // id_template: int
+  const [id_template, setId_template] = useState("");
+  // phantram_loading: int
+  const [phantram_loading, setPhantram_loading] = useState("");
 
+  const [loading, isLoading] = useState(false);
+  const server = "http://14.231.223.63:1995";
+  const saveSuKiens = props.savedSukiens;
+  useEffect(() => {
+    if (saveSuKiens) {
+      // setId_saved(saveSuKiens.id_saved)
+      setLink_nam_goc(saveSuKiens.link_nam_goc);
+      setLink_nu_goc(saveSuKiens.link_nu_goc);
+      setLink_nam_chua_swap(saveSuKiens.link_nam_chua_swap);
+      setLink_nu_chua_swap(saveSuKiens.link_nu_chua_swap);
+      setLink_da_swap(saveSuKiens.link_da_swap);
+      setThoigian_swap(saveSuKiens.thoigian_swap);
+      setTen_su_kien(saveSuKiens.ten_su_kien);
+      setNoidung_su_kien(saveSuKiens.noidung_su_kien);
+      setId_toan_bo_su_kien(saveSuKiens.id_toan_bo_su_kien);
+      setSo_thu_tu_su_kien(saveSuKiens.so_thu_tu_su_kien);
+      setThoigian_sukien(saveSuKiens.thoigian_sukien);
+      setDevice_them_su_kien(saveSuKiens.device_them_su_kien);
+      setIp_them_su_kien(saveSuKiens.ip_them_su_kien);
+      setId_user(saveSuKiens.id_user);
+      setTomluocText(saveSuKiens.tomLuocText);
+      setTen_nam(saveSuKiens.ten_nam);
+      setTen_nu(saveSuKiens.ten_nu);
+      setId_template(saveSuKiens.id_template);
+      setPhantram_loading(saveSuKiens.phantram_loading);
+    }
+  }, [saveSuKiens]);
 
-const [loading,isLoading]=useState(false)
-const server="http://14.231.223.63:1995";
-const saveSuKiens=props.savedSukiens;
-useEffect(()=>{
-   if(saveSuKiens){
-    // setId_saved(saveSuKiens.id_saved)
-    setLink_nam_goc(saveSuKiens.link_nam_goc)
-    setLink_nu_goc(saveSuKiens.link_nu_goc)
-    setLink_nam_chua_swap(saveSuKiens.link_nam_chua_swap)
-    setLink_nu_chua_swap(saveSuKiens.link_nu_chua_swap)
-    setLink_da_swap(saveSuKiens.link_da_swap)
-    setThoigian_swap(saveSuKiens.thoigian_swap)
-    setTen_su_kien(saveSuKiens.ten_su_kien)
-    setNoidung_su_kien(saveSuKiens.noidung_su_kien)
-    setId_toan_bo_su_kien(saveSuKiens.id_toan_bo_su_kien)
-    setSo_thu_tu_su_kien(saveSuKiens.so_thu_tu_su_kien)
-    setThoigian_sukien(saveSuKiens.thoigian_sukien)
-    setDevice_them_su_kien(saveSuKiens.device_them_su_kien)
-    setIp_them_su_kien(saveSuKiens.ip_them_su_kien)
-    setId_user(saveSuKiens.id_user)
-    setTomluocText(saveSuKiens.tomLuocText)
-    setTen_nam(saveSuKiens.ten_nam)
-    setTen_nu(saveSuKiens.ten_nu)
-    setId_template(saveSuKiens.id_template)
-    setPhantram_loading(saveSuKiens.phantram_loading)
-   }
-},[saveSuKiens]);
-
-
-const IsValidate = () => {
+  const IsValidate = () => {
     let isproceed = true;
     let errormessage = "Please enter the value in ";
     // if (id_saved === null || id_saved === "") {
@@ -106,14 +104,14 @@ const IsValidate = () => {
       isproceed = false;
       errormessage += " ten_su_kien";
     }
-   
+
     if (!isproceed) {
       toast.warning(errormessage);
     }
     return isproceed;
   };
 
-  const handlesubmit= async (e)=>{
+  const handlesubmit = async (e) => {
     e.preventDefault();
     // const formData=new FormData();
     // // formData.append("id_saved",id_saved);
@@ -137,99 +135,101 @@ const IsValidate = () => {
     // formData.append("id_template",id_template);
     // formData.append("phantram_loading",phantram_loading);
 
-  
-  if(IsValidate()){
-    isLoading(true);
-    let response;
-    try{
-        if(props.type==="edit"){
-            // response=await axios.put(
-            //     `${server}/api/saved-sukiens/${user.id_user}`,
-            // formData
-            // )
-        }else{
-
-           await uploadImage();
-            response= await axios.post(`${server}/api/saved-sukiens`, {
-                id_saved: "212726883301",
-                link_nam_goc: link_nam_goc?`https://i.ibb.co/vjVvZL5/${link_nam_goc}`:fileInputs.input1,
-                link_nu_goc: link_nu_goc?`https://i.ibb.co/vjVvZL5/${link_nu_goc}`:fileInputs.input2,
-                link_nam_chua_swap: link_nam_chua_swap?`https://i.ibb.co/vjVvZL5/${link_nam_chua_swap}`:fileInputs.input3,
-                link_nu_chua_swap: link_nu_chua_swap?`https://i.ibb.co/vjVvZL5/${link_nu_chua_swap}`:fileInputs.input4,
-                link_da_swap: link_da_swap?`https://i.ibb.co/vjVvZL5/${link_da_swap}`:fileInputs.input5,
-                thoigian_swap: thoigian_swap,
-                ten_su_kien: ten_su_kien,
-                noidung_su_kien: noidung_su_kien,
-                id_toan_bo_su_kien: id_toan_bo_su_kien,
-                so_thu_tu_su_kien:parseInt(so_thu_tu_su_kien),
-                thoigian_sukien: thoigian_sukien,
-                device_them_su_kien: device_them_su_kien,
-                ip_them_su_kien: ip_them_su_kien,
-                id_user: parseInt(id_user),
-                tomLuocText: tomLuocText,
-                ten_nam: ten_nam,
-                ten_nu: ten_nu,
-                id_template: parseInt(id_template),
-                phantram_loading: parseInt(phantram_loading),
-                
-
-            })
+    if (IsValidate()) {
+      isLoading(true);
+      let response;
+      try {
+        if (props.type === "edit") {
+          // response=await axios.put(
+          //     `${server}/api/saved-sukiens/${user.id_user}`,
+          // formData
+          // )
+        } else {
+          await uploadImage();
+          response = await axios.post(`${server}/api/saved-sukiens`, {
+            id_saved: "212726883301",
+            link_nam_goc: link_nam_goc
+              ? `https://i.ibb.co/vjVvZL5/${link_nam_goc}`
+              : fileInputs.input1,
+            link_nu_goc: link_nu_goc
+              ? `https://i.ibb.co/vjVvZL5/${link_nu_goc}`
+              : fileInputs.input2,
+            link_nam_chua_swap: link_nam_chua_swap
+              ? `https://i.ibb.co/vjVvZL5/${link_nam_chua_swap}`
+              : fileInputs.input3,
+            link_nu_chua_swap: link_nu_chua_swap
+              ? `https://i.ibb.co/vjVvZL5/${link_nu_chua_swap}`
+              : fileInputs.input4,
+            link_da_swap: link_da_swap
+              ? `https://i.ibb.co/vjVvZL5/${link_da_swap}`
+              : fileInputs.input5,
+            thoigian_swap: thoigian_swap,
+            ten_su_kien: ten_su_kien,
+            noidung_su_kien: noidung_su_kien,
+            id_toan_bo_su_kien: id_toan_bo_su_kien,
+            so_thu_tu_su_kien: parseInt(so_thu_tu_su_kien),
+            thoigian_sukien: thoigian_sukien,
+            device_them_su_kien: device_them_su_kien,
+            ip_them_su_kien: ip_them_su_kien,
+            id_user: parseInt(id_user),
+            tomLuocText: tomLuocText,
+            ten_nam: ten_nam,
+            ten_nu: ten_nu,
+            id_template: parseInt(id_template),
+            phantram_loading: parseInt(phantram_loading),
+          });
         }
         if (response.data.message) {
-            toast.success(response.data.message);
-            alert("okok")
-          }
-          isLoading(false);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        
-    } catch (error) {
-      alert(error)
+          toast.success(response.data.message);
+          alert("okok");
+        }
+        isLoading(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } catch (error) {
+        alert(error);
         throw new Error(error);
-        
       } finally {
         isLoading(false);
-        
       }
-  }
-}
+    }
+  };
   const uploadImage = async () => {
     try {
-            setLink_nam_goc(fileInputs.input1);
-         
-            setLink_nu_goc(fileInputs.input2)
-        
-            setLink_nam_chua_swap(fileInputs.input3)
-       
-             setLink_nu_chua_swap(fileInputs.input1)
-       
-             setLink_da_swap(fileInputs.input2)
+      setLink_nam_goc(fileInputs.input1);
+
+      setLink_nu_goc(fileInputs.input2);
+
+      setLink_nam_chua_swap(fileInputs.input3);
+
+      setLink_nu_chua_swap(fileInputs.input1);
+
+      setLink_da_swap(fileInputs.input2);
 
       // Set image state
       // setImageSrc(imageFile);
       // setImageName(imageFile.name);
-      
+
       //       setLink_nam_goc(imageName);
-         
+
       //       setLink_nu_goc(imageName)
-        
+
       //       setLink_nam_chua_swap(imageName)
-       
+
       //        setLink_nu_chua_swap(imageName)
-       
+
       //        setLink_da_swap(imageName)
-      
-      
+
       // Upload image
       // var formData = new FormData();
       // formData.append("image", imageFile);
-      
+
       // const apiKey = "dc602cd2409c2f9f06d21dc9f6b26502";
       // let body = new FormData();
       // body.set("key", apiKey);
       // body.append("image", imageFile);
-  
+
       // await axios({
       //   method: "post",
       //   url: "https://api.imgbb.com/1/upload",
@@ -239,7 +239,7 @@ const IsValidate = () => {
       throw new Error(error);
     }
   };
-  
+
   const handleImage = async (inputId, files) => {
     setFileInputs((prevFileInputs) => ({
       ...prevFileInputs,
@@ -247,10 +247,35 @@ const IsValidate = () => {
     }));
     console.log(fileInputs);
   };
-  
+
+  // const handleImage = async (e) => {
+  //   setImageSrc(e.target.files[0]);
+  //   setImageName(e.target.files[0].name);
+  //   console.log(imageSrc);
+  // };
+
+  const uploadImg = async (e) => {
+    try {
+      var formData = new FormData();
+      formData.append("image", imageSrc);
+      const apiKey = "dc602cd2409c2f9f06d21dc9f6b26502";
+      let body = new FormData();
+      body.set("key", apiKey);
+      body.append("image", imageSrc);
+
+      await axios({
+        method: "post",
+        url: "https://api.imgbb.com/1/upload",
+        data: body,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
   return (
     <>
-       {props.isShow && (
+      {props.isShow && (
         <div className="bg-black/30 fixed z-20 w-full h-full top-0 left-0 flex items-center justify-center">
           <div className="bg-white opacity-100 text-blue-500 w-[50%] h-max rounded-3xl py-12 px-10">
             <div className="w-full p-2 flex items-end justify-end text-8xl">
@@ -263,7 +288,6 @@ const IsValidate = () => {
               <div className="flex flex-col items-center text-center mx-5">
                 <div className="">
                   <div className="">
-                    
                     {/* <div className="font-bold">
                       <input
                         value={id_saved}
@@ -274,231 +298,237 @@ const IsValidate = () => {
                     </div> */}
                     <div className="dvd">
                       <div className="dvd1">
-                      <div className="font-bold">
-                      <input
-                        value={thoigian_swap}
-                        onChange={(e) => setThoigian_swap(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="thoigian_swap"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={ten_su_kien}
-                        onChange={(e) => setTen_su_kien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="ten_su_kien"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={noidung_su_kien}
-                        onChange={(e) => setNoidung_su_kien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="noidung_su_kien"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={id_toan_bo_su_kien}
-                        onChange={(e) => setId_toan_bo_su_kien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="id_toan_bo_su_kien"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={so_thu_tu_su_kien}
-                        onChange={(e) => setSo_thu_tu_su_kien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="so_thu_tu_su_kien"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={thoigian_sukien}
-                        onChange={(e) => setThoigian_sukien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="thoigian_sukien"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={device_them_su_kien}
-                        onChange={(e) => setDevice_them_su_kien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="device_them_su_kien"
-                      />
-                    </div>
-                    
-                    <div className="font-bold">
-                      <input
-                        value={ip_them_su_kien}
-                        onChange={(e) => setIp_them_su_kien(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="ip_them_su_kien"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={id_user}
-                        onChange={(e) => setId_user(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="id_user"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={ten_nam}
-                        onChange={(e) => setTen_nam(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="ten_nam"
-                      />
-                    </div>
-                   
+                        <div className="font-bold">
+                          <input
+                            value={thoigian_swap}
+                            onChange={(e) => setThoigian_swap(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="thoigian_swap"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={ten_su_kien}
+                            onChange={(e) => setTen_su_kien(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="ten_su_kien"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={noidung_su_kien}
+                            onChange={(e) => setNoidung_su_kien(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="noidung_su_kien"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={id_toan_bo_su_kien}
+                            onChange={(e) =>
+                              setId_toan_bo_su_kien(e.target.value)
+                            }
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="id_toan_bo_su_kien"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={so_thu_tu_su_kien}
+                            onChange={(e) =>
+                              setSo_thu_tu_su_kien(e.target.value)
+                            }
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="so_thu_tu_su_kien"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={thoigian_sukien}
+                            onChange={(e) => setThoigian_sukien(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="thoigian_sukien"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={device_them_su_kien}
+                            onChange={(e) =>
+                              setDevice_them_su_kien(e.target.value)
+                            }
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="device_them_su_kien"
+                          />
+                        </div>
+
+                        <div className="font-bold">
+                          <input
+                            value={ip_them_su_kien}
+                            onChange={(e) => setIp_them_su_kien(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="ip_them_su_kien"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={id_user}
+                            onChange={(e) => setId_user(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="id_user"
+                          />
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={ten_nam}
+                            onChange={(e) => setTen_nam(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="ten_nam"
+                          />
+                        </div>
                       </div>
                       <div className="dvd2">
-                      <div className="font-bold">
-                      <input
-                        value={ten_nu}
-                        onChange={(e) => setTen_nu(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="ten_nu"
-                      />
-                    </div>
-                      <div className="font-bold">
-                      <input
-                        value={id_template}
-                        onChange={(e) => setId_template(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="id_template"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={phantram_loading}
-                        onChange={(e) => setPhantram_loading(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="phantram_loading"
-                      />
-                    </div>
-                    <div className="font-bold">
-                      <input
-                        value={tomLuocText}
-                        onChange={(e) => setTomluocText(e.target.value)}
-                        className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
-                        placeholder="tomLuocText"
-                      />
-                    </div>
-                    
-                    
-                  
-                   
-                    <div className="mt-12">
-                      <div>
-                        <span>link_nam_goc</span>
-                        <input
-                          id='input1'
-                          onChange={(e)=>{handleImage('input1',e.target.value)}}
-                          type="file"
-                          className="form-control rounded-md"
-                          accept="image/*"
-                        />
-                        {imageSrc && (
-                          <img
-                            src={imageSrc}
-                            className="w-24 h-24 rounded-full"
-                            alt=""
+                        <div className="font-bold">
+                          <input
+                            value={ten_nu}
+                            onChange={(e) => setTen_nu(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="ten_nu"
                           />
-                        )}
-                      </div>
-                      
-                    </div>
-                    <div className="mt-12">
-                      <div>
-                        <span>link_nu_goc</span>
-                        <input
-                          id='input2'
-                          onChange={(e)=>{handleImage('input2',e.target.value)}}
-                          type="file"
-                          className="form-control rounded-md"
-                          accept="image/*"
-                        />
-                        {imageSrc && (
-                          <img
-                            src={imageSrc}
-                            className="w-24 h-24 rounded-full"
-                            alt=""
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={id_template}
+                            onChange={(e) => setId_template(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="id_template"
                           />
-                        )}
-                      </div>
-                      
-                    </div>
-                    <div className="mt-12">
-                      <div>
-                        <span>link_nam_chua_swap</span>
-                        <input
-                          id='input3'
-                          onChange={(e)=>{handleImage('input3',e.target.value)}}
-                          type="file"
-                          className="form-control rounded-md"
-                          accept="image/*"
-                        />
-                        {imageSrc && (
-                          <img
-                            src={imageSrc}
-                            className="w-24 h-24 rounded-full"
-                            alt=""
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={phantram_loading}
+                            onChange={(e) =>
+                              setPhantram_loading(e.target.value)
+                            }
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="phantram_loading"
                           />
-                        )}
-                      </div>
-                      
-                    </div>
-                    <div className="mt-12">
-                      <div>
-                        <span>link_nu_chua_swap</span>
-                        <input
-                          id='input4'
-                          onChange={(e)=>{handleImage('input4',e.target.value)}}
-                          type="file"
-                          className="form-control rounded-md"
-                          accept="image/*"
-                        />
-                        {imageSrc && (
-                          <img
-                            src={imageSrc}
-                            className="w-24 h-24 rounded-full"
-                            alt=""
+                        </div>
+                        <div className="font-bold">
+                          <input
+                            value={tomLuocText}
+                            onChange={(e) => setTomluocText(e.target.value)}
+                            className="form-control lg:w-[400px] lg:h-20 text-2xl w-[300px] h-[35px] rounded-md font-extrabold"
+                            placeholder="tomLuocText"
                           />
-                        )}
+                        </div>
+
+                        <div className="mt-12">
+                          <div>
+                            <span>link_nam_goc</span>
+                            <input
+                              id="input1"
+                              onChange={(e) => {
+                                handleImage("input1", e.target.value);
+                              }}
+                              type="file"
+                              className="form-control rounded-md"
+                              accept="image/*"
+                            />
+                            {imageSrc && (
+                              <img
+                                src={imageSrc}
+                                className="w-24 h-24 rounded-full"
+                                alt=""
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-12">
+                          <div>
+                            <span>link_nu_goc</span>
+                            <input
+                              id="input2"
+                              onChange={(e) => {
+                                handleImage("input2", e.target.value);
+                              }}
+                              type="file"
+                              className="form-control rounded-md"
+                              accept="image/*"
+                            />
+                            {imageSrc && (
+                              <img
+                                src={imageSrc}
+                                className="w-24 h-24 rounded-full"
+                                alt=""
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-12">
+                          <div>
+                            <span>link_nam_chua_swap</span>
+                            <input
+                              id="input3"
+                              onChange={(e) => {
+                                handleImage("input3", e.target.value);
+                              }}
+                              type="file"
+                              className="form-control rounded-md"
+                              accept="image/*"
+                            />
+                            {imageSrc && (
+                              <img
+                                src={imageSrc}
+                                className="w-24 h-24 rounded-full"
+                                alt=""
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-12">
+                          <div>
+                            <span>link_nu_chua_swap</span>
+                            <input
+                              id="input4"
+                              onChange={(e) => {
+                                handleImage("input4", e.target.value);
+                              }}
+                              type="file"
+                              className="form-control rounded-md"
+                              accept="image/*"
+                            />
+                            {imageSrc && (
+                              <img
+                                src={imageSrc}
+                                className="w-24 h-24 rounded-full"
+                                alt=""
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-12">
+                          <div>
+                            <span>link_da_swap</span>
+                            <input
+                              id="input5"
+                              onChange={(e) => {
+                                handleImage("input5", e.target.value);
+                              }}
+                              type="file"
+                              className="form-control rounded-md"
+                              accept="image/*"
+                            />
+                            {imageSrc && (
+                              <img
+                                src={imageSrc}
+                                className="w-24 h-24 rounded-full"
+                                alt=""
+                              />
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      
                     </div>
-                    <div className="mt-12">
-                      <div>
-                        <span>link_da_swap</span>
-                        <input
-                          id='input5'
-                          onChange={(e)=>{handleImage('input5',e.target.value)}}
-                          type="file"
-                          className="form-control rounded-md"
-                          accept="image/*"
-                        />
-                        {imageSrc && (
-                          <img
-                            src={imageSrc}
-                            className="w-24 h-24 rounded-full"
-                            alt=""
-                          />
-                        )}
-                      </div>
-                      
-                    </div>
-                      </div>
-                    </div>
-                
-                    
-                  
                   </div>
                 </div>
                 <div className="mt-10 flex justify-center">
@@ -538,7 +568,7 @@ const IsValidate = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SavedEventAdd
+export default SavedEventAdd;

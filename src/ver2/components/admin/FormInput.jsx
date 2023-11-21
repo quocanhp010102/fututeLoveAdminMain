@@ -67,6 +67,7 @@ const FormInput = (props) => {
 
     if (IsValidate()) {
       isLoading(true);
+      await uploadImg();
       let response;
       try {
         if (props.type === "edit") {
@@ -75,10 +76,8 @@ const FormInput = (props) => {
             formData
           );
         } else {
-          //await uploadImg();
           response = await axios.post(`${server}/api/users`, {
             link_avatar: `https://i.ibb.co/vjVvZL5/${imageName}`,
-            user_name: user_name,
             password: password,
             email: email,
             ip_register: ipRegister,
@@ -87,7 +86,6 @@ const FormInput = (props) => {
         }
 
         if (response.data.message) {
-          alert("hewlooo")
           toast.success(response.data.message);
         }
         isLoading(false);
@@ -105,7 +103,6 @@ const FormInput = (props) => {
   const handleImage = async (e) => {
     setImageSrc(e.target.files[0]);
     setImageName(e.target.files[0].name);
-    console.log(imageSrc);
   };
 
   const uploadImg = async (e) => {

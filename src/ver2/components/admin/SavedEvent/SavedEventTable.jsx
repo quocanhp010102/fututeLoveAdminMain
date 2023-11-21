@@ -10,8 +10,6 @@ const SavedEventTable = (props) => {
 
   const eventsData = props.events;
 
-  console.log(eventsData);
-
   useEffect(() => {
     setEvents(eventsData.payload);
   }, [eventsData.payload]);
