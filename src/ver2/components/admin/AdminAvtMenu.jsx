@@ -9,6 +9,11 @@ const AdminAvtMenu = (props) => {
     navigate("/");
     window.location.reload();
   };
+  const handleSetting = () => {
+   
+    navigate("/setting");
+    window.location.reload();
+  };
   return (
     <>
       {props.isShowMenu && (
@@ -22,6 +27,17 @@ const AdminAvtMenu = (props) => {
                 to="/"
               >
                 LOGOUT
+              </NavLink>
+              
+            </li>
+            <li className="w-full h-32 flex justify-center items-center ">
+            <NavLink
+                onClick={handleSetting}
+                className="pt-16 slab font-extrabold text-3xl text-blue-400 px-8 py-2 rounded-2xl hover:bg-gray-300 hover:text-gray-500
+             "
+                to="/"
+              >
+                SETTING
               </NavLink>
             </li>
           </ul>

@@ -29,6 +29,7 @@ import ListSavedEvent from "./ver2/page/admin/ListSavedEvents";
 import ListAddEvent from "./ver2/page/admin/ListAddEvent";
 import Overview from "./ver2/components/admin/overview/Overview";
 import ListInbox from "./ver2/page/admin/ListInbox";
+import SettingTable from "./ver2/components/admin/setting/SettingTable";
 
 function App() {
   const navigate = useNavigate();
@@ -87,6 +88,7 @@ function App() {
         <Route path="saved-events" element={<ListSavedEvent />} />
         <Route path="add-events" element={<ListAddEvent />} />
         <Route path="inbox" element={<ListInbox />} />
+        <Route path="setting" element={<SettingTable />} />
         {/* <Route index element={<Historyv2 />} />
         <Route path="home" element={<Historyv2 />} />
         <Route path="event/:id" element={<Historyv2 />} />

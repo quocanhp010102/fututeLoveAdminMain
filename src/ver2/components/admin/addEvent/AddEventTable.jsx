@@ -9,7 +9,7 @@ const AddEventTable = (props) => {
   };
   return (
     <>
-      <div className="">
+      {/* <div className="">
         <button
           className="d-block text-3xl text-white bg-blue-500 py-4 px-10 "
           onClick={() => {
@@ -18,10 +18,10 @@ const AddEventTable = (props) => {
         >
           + New saved-sukiens
         </button>
-      </div>
-      <div className="">
+      </div> */}
+      {/* <div className="">
         <AddeventAdd isShow={showForm} handleShowForm={handleShowForm} />
-      </div>
+      </div> */}
       <div className="bg-white mb-[40%] w-[95%] rounded-xl mt-28 p-4 lg:mt-20 sm:p-12">
         {props.events.map((event) => (
           <div key={event.id_saved} className="mb-4">

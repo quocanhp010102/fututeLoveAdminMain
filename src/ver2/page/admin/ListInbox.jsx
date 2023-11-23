@@ -6,15 +6,15 @@ import InboxTable from '../../components/admin/inboxx/InboxTable';
 import InboxUserInfor from '../../components/admin/inboxx/InboxUserInfor';
 
 const ListInbox = () => {
-   
+  const [isShower,setIsShower]=useState(false)
     
   return (
    <>
      <Inboxheader/>
      <div className="ndc d-flex">
      <InboxTable/>
-     <Inboxnd/>
-     <InboxUserInfor/>
+     <Inboxnd />
+     
      </div>
      
    </>

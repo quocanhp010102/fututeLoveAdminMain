@@ -112,7 +112,7 @@ const AdminSignin = () => {
     <>
       {loading && <Loading />}
       <AuthenLayout>
-        <h1 className="mb-16 text-5xl">Sign In to your account</h1>
+        <h1 className="mb-16 text-5xl text-left"><span> Sign In</span></h1>
         <form onSubmit={handleLogin}>
           <div className="font-bold">
             <input
@@ -120,16 +120,16 @@ const AdminSignin = () => {
               onChange={(e) => setUsername(e.target.value)}
               className="form-control lg:w-[400px] lg:h-[50px] w-[300px] h-[50px] font-extrabold rounded-lg text-2xl"
               placeholder="User Name"
-            ></input>
+            />
           </div>
-          <div className="mt-12">
+          <div className="mt-12 font-bold">
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="form-control lg:w-[400px] lg:h-[50px] w-[300px] h-[50px] font-extrabold rounded-lg text-2xl"
               placeholder="Password"
-            ></input>
+            />
             {/* <p className="block mr-0 ml-auto text-[#2563EB] text-xl mt-6 float-right cursor-pointer">
               Forgot password
             </p> */}

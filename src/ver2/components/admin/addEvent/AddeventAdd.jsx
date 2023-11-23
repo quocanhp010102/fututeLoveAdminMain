@@ -1,5 +1,5 @@
 import axios from "axios";
-import { parse } from "path-browserify";
+
 import { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { toast } from "react-toastify";
@@ -132,7 +132,7 @@ console.log("buoc1");
           //await uploadImg();
           console.log("fasdfsddddddd");
           response = await axios.post(`${server}/api/add-sukiens`, {
-            id_add:12,
+            
             id_user:parseInt(id_user),
             id_toan_bo_su_kien:id_toan_bo_su_kien,
             ten_sukien:ten_sukien,
