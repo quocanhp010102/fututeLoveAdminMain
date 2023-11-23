@@ -27,21 +27,6 @@ const SavedEventTable = (props) => {
 
   return (
     <>
-<<<<<<< Updated upstream
-=======
-   
-    <div className="them-saved-sukien">
-    <button
-          className="d-block text-3xl text-white bg-blue-500 py-4 px-10 "
-          onClick={() => {
-            setShowForm(true);
-          }}
-        >
-          + New saved-sukiens
-        </button>
-    </div>
-     
->>>>>>> Stashed changes
       <div className="themsukienduoi">
         <div className="bg-white mb-[40%] w-[95%] rounded-xl p-4 sm:p-12">
           {events.map((event, index) => (
