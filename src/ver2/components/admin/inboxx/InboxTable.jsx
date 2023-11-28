@@ -1,7 +1,11 @@
 import React from 'react'
 import InboxUser from './InboxUser'
 
-const InboxTable = () => {
+const InboxTable = (props) => {
+  const handleClick=(contact_id)=>{
+      props.handleGetContactId(contact_id);
+      
+  }
   return (
     <div className='inbox_table w-25 ml-2'>
       <div className="inbox_table_td">
@@ -22,13 +26,8 @@ const InboxTable = () => {
 
 
       </div>
-      <InboxUser />
-      <InboxUser />
-      <InboxUser />
-      <InboxUser />
-      <InboxUser />
-      <InboxUser />
-      <InboxUser />
+      <InboxUser handleClick={handleClick} />
+     
     </div>
   )
 }

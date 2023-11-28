@@ -7,13 +7,17 @@ import InboxUserInfor from '../../components/admin/inboxx/InboxUserInfor';
 
 const ListInbox = () => {
   const [isShower,setIsShower]=useState(false)
-    
+  const [contactid,setContactId]=useState()
+  const handleGetContactId=(contact_id)=>{
+    setContactId(contact_id)
+    console.log(contactid);
+  }
   return (
    <>
      <Inboxheader/>
      <div className="ndc d-flex">
-     <InboxTable/>
-     <Inboxnd />
+     <InboxTable handleGetContactId={handleGetContactId}/>
+     <Inboxnd contactid={contactid} />
      
      </div>
      

@@ -42,7 +42,7 @@ html {
   color: #ffffff;
 }
 body {
-  font-family: "Pacifico", cursive !important;
+  font-family: 'Inter', sans-serif;
   overflow: hidden;
   overflow-y: scroll;
   height: 100%;
@@ -369,18 +369,27 @@ html *::-webkit-scrollbar-track {
 }
 
 .input-container {
-  padding: 10px;
   display: flex;
-  position: absolute;
-  
-  width: 100%;
-  bottom: 0;
-  gap: 8px;
   align-items: center;
-  background-color: #fff;
-  border-top: 1px solid #ccc;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
 }
 
+.input-container input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-container svg {
+  cursor: pointer;
+}
 input {
   flex: 1;
   padding: 8px;
@@ -596,6 +605,7 @@ input {
 
 /*setting*/
    .setting{
+    font-size: 15px;
     background-color:  #EFEFEF;
     padding:20px;
    }

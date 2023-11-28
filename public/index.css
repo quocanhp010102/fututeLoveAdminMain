@@ -24,7 +24,7 @@ html {
     color: #FFFFFF;
 }
 body {
-    font-family: 'Pacifico', cursive !important;
+    font-family: 'Pacifico', cursive;
     overflow: hidden;
     overflow-y: scroll;
 }

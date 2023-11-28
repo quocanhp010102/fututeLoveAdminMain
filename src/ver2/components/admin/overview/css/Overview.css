@@ -33,3 +33,66 @@
     width: 80%;
    
 }
+.light-icon,.arrow-up-icon{
+    color: greenyellow;
+}
+.w-45{
+    width: 45%;
+}
+.customer-nd h1{
+    font-size: 35px;
+}
+.bieudo{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 400px;
+}
+.product{
+    font-size: 20px;
+    border: 5px solid #EFEFEF ;
+}
+.td-left h3{
+    position: relative;
+}
+.product-right{
+    margin-left: 10px;
+}
+.product-right h3{
+    position: relative;
+}
+.td-left h3::after,.product-right h3::after{
+    content: "";
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    background-color: aquamarine;
+}
+.customer-nd{
+    font-size: 20px;
+    line-height: 2;
+    padding-bottom: 20px;
+}
+.view-income{
+    
+    width: 100%;
+    height: 500px;
+}
+.pie-data{
+    font-size: 13px;
+    margin-top: 10px;
+    width: 300px;
+    height: 300px;
+}
+.tang{
+    color: greenyellow;
+}
+th, td {
+  
+   padding: 5px 45px;
+  }
+  .w-70{
+    width: 70%;
+  }
