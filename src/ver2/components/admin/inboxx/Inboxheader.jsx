@@ -1,7 +1,9 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdNotifications } from 'react-icons/md';
-const Inboxheader = () => {
+const Inboxheader = (props) => {
+  console.log(props.onUser.user_name);
+
   return (
     <div>
       <div className="inbox-header d-flex">
@@ -26,13 +28,13 @@ const Inboxheader = () => {
           </div>
           <div className="khoi2">
             <div className="khoi2_avt">
-                <img src="logo192.png" alt="" />
+                <img src={props.onUser.link_avatar} alt="" />
             </div>
             <div className="khoi2_tennd">
-                <h4>Angela L.</h4>
+                <h4>{props.onUser.user_name}</h4>
                 <p>Project Manager</p>
             </div>
-          </div>
+          </div>  
           <div className="khoi3">
               &#9650;
           </div>

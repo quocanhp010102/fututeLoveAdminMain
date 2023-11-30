@@ -16,7 +16,11 @@ const Inboxnd = (props) => {
     // { id: 3, text: "How are you?", sender: "user" },
     // Thêm các tin nhắn khác nếu cần
   ]);
-
+  
+  const scrolls= ()=> {
+    var chatContainer = document.querySelector('.message-container');
+    chatContainer.scrollTop = chatContainer.scrollHeight +100;
+  }
   const storedData = localStorage.getItem('user-info');
   
   let id_userr;
@@ -49,22 +53,22 @@ if (storedData) {
      // setIsLoading(false);
     }
   }, []);
-  const fetchData2 = useCallback(async () => {
+  // const fetchData2 = useCallback(async () => {
     
-    try {
-      const response = await axios.get("http://localhost:3000/listinbox");
-      if (response.data.message) {
-       // toast.error(response.data.message);   
-      } else {
-        const data = response.data;
-        setListUserss(data);
-      }
-    } catch (error) {
-      return //toast.error(error.message);
-    } finally {
-     // setIsLoading(false);
-    }
-  }, []);
+  //   try {
+  //     const response = await axios.get("http://localhost:3000/listinbox");
+  //     if (response.data.message) {
+  //      // toast.error(response.data.message);   
+  //     } else {
+  //       const data = response.data;
+  //       setListUserss(data);
+  //     }
+  //   } catch (error) {
+  //     return //toast.error(error.message);
+  //   } finally {
+  //    // setIsLoading(false);
+  //   }
+  // }, []);
   useEffect(() => {
     // Chắc chắn rằng messagesRef và messagesRef.current tồn tại
     if (messagesRef && messagesRef.current) {
@@ -74,40 +78,27 @@ if (storedData) {
   }, [messages]);
   const handlePatchData=async(text)=>{
     try {
-      console.log(text);
-      const response = await axios.get("http://localhost:3000/listinbox");
-      if (response.data.message) {
-
-        // Xử lý thông báo nếu cần
-        // toast.error(response.data.message);
-      } else {
-         
-          console.log(response.data);
-          response.data.map(async (e)=>{
-            if(e.id_user===props.contactid){
-                const response2 = await axios.patch(`http://localhost:3000/listinbox/${e.id}`,{
+     
+      if (!props.contactid) {
+        console.error('Invalid contactid');
+        return;
+      }
+            
+                const response2 = await axios.patch(`http://localhost:3000/listinbox/${props.contactid.id_user}`,{
                   
-                  id_user:e.id_user,
-                  last_message_time:e.last_message_time,
-                  link_avatar:e.link_avatar,
-                  user_name:e.user_name,
+                
                   message:text
                 })
-              if (response2.data.message) {
+             
 
-                // Xử lý thông báo nếu cần
-                // toast.error(response.data.message);
-              }
-              return
+            
 
-            }
-
-          })
+          
         // Xử lý dữ liệu trả về nếu cần
         // const data = response.data;
         // setMessages(data);
       }
-    } catch (error) {
+     catch (error) {
       // Xử lý lỗi nếu PATCH request thất bại
       // toast.error(error.message);
     } finally {
@@ -116,10 +107,10 @@ if (storedData) {
     }
   }
   const sendMessage = async (text) => {
-    const newMessage = { message:text, receiver_id:props.contactid, sender_id: id_userr,timestamp: "2023-11-16T10:59:16",
-    contact_id: props.contactid };
-    const newMessage2 = { id: messages.length + 1,message:text, receiver_id:props.contactid, sender_id: id_userr,timestamp: "2023-11-16T10:59:16",
-    contact_id: props.contactid };
+    const newMessage = { message:text, receiver_id:props.contactid.id_user, sender_id: id_userr,timestamp: "2023-11-16T10:59:16",
+    contact_id: props.contactid.id_user };
+    const newMessage2 = { id: messages.length + 1,message:text, receiver_id:props.contactid.id_user, sender_id: id_userr,timestamp: "2023-11-16T10:59:16",
+    contact_id: props.contactid.id_user };
     setMessages([...messages, newMessage2]);
     
     try {
@@ -145,9 +136,9 @@ if (storedData) {
            <div className="message-container w-100 mt-2 mx-3">
            <div className="inbox-user-td w-100">
              <div className="td-img d-flex gap-2">
-               <img src="logo192.png" alt="" />
+               <img src={props.contactid.link_avatar} alt="" />
                <div className="inbox-user-td-nd">
-                 <h3>Alexandra Michu</h3>
+                 <h3>{props.contactid.user_name}</h3>
                  <p>Online</p>
                </div>
              </div>
@@ -162,9 +153,10 @@ if (storedData) {
            
              {messages.map( (message) => {
                    
-                    if(message.contact_id===props.contactid&&(message.receiver_id===id_userr||message.sender_id===id_userr)){
+                    if(message.contact_id===props.contactid.id_user&&(message.receiver_id===id_userr||message.sender_id===id_userr)){
+                     // handlePatchData(message.message)
                     //   const response2 = await axios.patch(`http://localhost:3000/listinbox/${props.contactid}`,{
-                  
+                     
                      
                     //   message:message.message
                     // })
@@ -196,7 +188,9 @@ if (storedData) {
                  if (e.key === "Enter" && e.target.value.trim() !== "") {
                   e.preventDefault();
                    sendMessage(e.target.value);
-                  
+                    handlePatchData(e.target.value||messages[messages.length-1].message)
+                    console.log(messages[messages.length-1].message);
+                    scrolls();
                    e.target.value = "";
                  }
                }}
@@ -213,12 +207,12 @@ if (storedData) {
     {
       isShower&&(
         <div className="w-75 d-flex">
-         <div className="message-container mt-2 mx-3">
+           <div className="message-container mt-2 mx-3">
            <div className="inbox-user-td w-100">
              <div className="td-img d-flex gap-2">
-               <img src="logo192.png" alt="" />
+               <img src={props.contactid.link_avatar} alt="" />
                <div className="inbox-user-td-nd">
-                 <h3>Alexandra Michu</h3>
+                 <h3>{props.contactid.user_name}</h3>
                  <p>Online</p>
                </div>
              </div>
@@ -231,9 +225,15 @@ if (storedData) {
            </div>
            <div ref={messagesRef} className="message-window ">
            
-             {messages.map((message) => {
-
-                    if(message.contact_id===props.contactid&&(message.receiver_id===id_userr||message.sender_id===id_userr)){
+             {messages.map( (message) => {
+                   
+                    if(message.contact_id===props.contactid.id_user&&(message.receiver_id===id_userr||message.sender_id===id_userr)){
+                     // handlePatchData(message.message)
+                    //   const response2 = await axios.patch(`http://localhost:3000/listinbox/${props.contactid}`,{
+                     
+                     
+                    //   message:message.message
+                    // })
                       return  (
                         <div
                           key={message.id}
@@ -242,7 +242,7 @@ if (storedData) {
                           }`}
                         >
                           {message.message}
-                         
+                          
                         </div>
                       )
                     }
@@ -253,7 +253,7 @@ if (storedData) {
              
            </div>
            
-           <div className="input-container">
+           <div className="input-container w-40">
              <input
                className=""
                type="text"
@@ -262,6 +262,9 @@ if (storedData) {
                  if (e.key === "Enter" && e.target.value.trim() !== "") {
                   e.preventDefault();
                    sendMessage(e.target.value);
+                    handlePatchData(e.target.value||messages[messages.length-1].message)
+                    console.log(messages[messages.length-1].message);
+                    scrolls();
                    e.target.value = "";
                  }
                }}
@@ -270,7 +273,7 @@ if (storedData) {
              <FaPaperPlane />
            </div>
          </div>
-       <InboxUserInfor onClose={()=>setIsShower(false)}/>
+       <InboxUserInfor onUser={props.contactid} onClose={()=>setIsShower(false)}/>
   </div>
     
       )

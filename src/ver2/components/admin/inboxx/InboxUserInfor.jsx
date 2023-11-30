@@ -4,7 +4,7 @@ import { IoDocument } from 'react-icons/io5';
 import { FaTrash } from 'react-icons/fa';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
-const InboxUserInfor = ({onClose}) => {
+const InboxUserInfor = (props) => {
   const [isShower,setIsShower]=useState(true)
  
   
@@ -15,16 +15,16 @@ const InboxUserInfor = ({onClose}) => {
           <h2>User Infor</h2>
           <IoIosClose className='fz-10' onClick={()=>{
                  setIsShower(false)
-                 onClose();
+                 props.onClose();
           }
             
            
             }/>
       </div>
       <div className="userinfor-infors">
-          <img src="logo192.png" alt="" />
+          <img src={props.onUser.link_avatar} alt="" />
           <div className="userinfor-ndc">
-              <h3 className='py-3'>Alexandra Michu</h3>
+              <h3 className='py-3'>{props.onUser.user_name}</h3>
               <p className=''>UX Researcher</p>
 
           </div>

@@ -78,11 +78,15 @@ const Overview = () => {
           {action && (
             <>
             <div className="overview-than-luachon d-flex justify-content-between rounded">
+              
               <div
                 id="customer"
-                onClick={handleAction}
+                
                 className="overview-than-luachon action  d-flex w-40 justify-content-between rounded align-items-center"
               >
+                <div className="loptren" onClick={handleAction}>
+
+</div>
                 <div className="l1">
                   <IoBagHandle
                     className="bg-primary text-white rounded-circle p-2 mb-4"

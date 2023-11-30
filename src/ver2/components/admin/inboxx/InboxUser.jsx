@@ -16,8 +16,12 @@ const InboxUser = (props) => {
   const clickhere=(contact_id)=>{
      props.handleClick(contact_id)
   }
+  const clickgetUser=(user)=>{
+    props.handleUserr(user)
+  }
   const fetchData = useCallback(async () => {
     
+
     try {
       const response = await axios.get("http://localhost:3000/listinbox");
       if (response.data.message) {
@@ -40,9 +44,9 @@ const InboxUser = (props) => {
         <div className="inbox-user d-flex justify-content-between">
         
         <div className="inbox-user-left">
-             <img src={inbuser.link_avatar}  onClick={()=>clickhere(inbuser.id_user)} alt="" />
+             <img src={inbuser.link_avatar}  onClick={()=>clickhere(inbuser)} alt="" />
         </div>
-        <div className="inbox-user-center">
+        <div onClick={()=>clickgetUser(inbuser)} className="inbox-user-center">
              <h3>{inbuser.user_name}</h3>
              <p>{inbuser.message}</p>
              

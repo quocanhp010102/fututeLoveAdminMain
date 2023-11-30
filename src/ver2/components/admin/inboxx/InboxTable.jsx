@@ -6,6 +6,9 @@ const InboxTable = (props) => {
       props.handleGetContactId(contact_id);
       
   }
+  const handleUserr=(user)=>{
+    props.handleGetuse(user)
+  }
   return (
     <div className='inbox_table w-25 ml-2'>
       <div className="inbox_table_td">
@@ -26,7 +29,7 @@ const InboxTable = (props) => {
 
 
       </div>
-      <InboxUser handleClick={handleClick} />
+      <InboxUser handleUserr={handleUserr} handleClick={handleClick} />
      
     </div>
   )
