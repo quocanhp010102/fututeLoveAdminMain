@@ -12,9 +12,37 @@ const FormInput = (props) => {
   const [ipRegister, setIpRegister] = useState("");
   const [deviceRegister, setDeviceRegister] = useState("");
   const [loading, isLoading] = useState(false);
-
+  const [check_gmail,setCheck_gmail]=useState([])
   const server = "http://14.231.223.63:1995";
   const user = props.user;
+
+
+  const checkEmailExistence = async (email) => {
+    try {
+      // Gửi yêu cầu kiểm tra email tồn tại lên API
+      const response = await axios.get("http://14.231.223.63:1995/api/users");
+  
+      if (response.data.message) {
+        toast.error(response.data.message);
+      } else {
+        const data = response.data;
+        const dataEmail = data.map((value) => {
+          return value.email;
+        });
+  
+        const emailExists = dataEmail.some((data2) => data2 === email);
+  
+        console.log(emailExists);
+        
+        // Trả về promise với giá trị emailExists
+        return Promise.resolve(emailExists);
+      }
+    } catch (error) {
+      // Trả về promise bị reject nếu có lỗi
+      return Promise.reject(error);
+    }
+  };
+  
 
   useEffect(() => {
     if (user) {
@@ -24,6 +52,8 @@ const FormInput = (props) => {
       setIpRegister(user.ip_register !== "null" ? user.ip_register : "");
       setDeviceRegister(user.device_register);
       setImageSrc(user.link_avatar);
+
+      
     }
   }, [user]);
 
@@ -67,6 +97,7 @@ const FormInput = (props) => {
 
     if (IsValidate()) {
       isLoading(true);
+       
       await uploadImg();
       let response;
       try {
@@ -76,13 +107,23 @@ const FormInput = (props) => {
             formData
           );
         } else {
-          response = await axios.post(`${server}/api/users`, {
-            link_avatar: `https://i.ibb.co/vjVvZL5/${imageName}`,
-            password: password,
-            email: email,
-            ip_register: ipRegister,
-            device_register: deviceRegister,
-          });
+          const checkckech=await checkEmailExistence(email)
+          console.log(checkckech);
+          if(checkckech===false){
+            console.log(imageName,password,email,ipRegister,deviceRegister);
+            response = await axios.post(`${server}/api/users`, {
+              user_name:user_name,
+              link_avatar: `https://i.ibb.co/vjVvZL5/${imageName}`,
+              password: password,
+              email: email,
+              ip_register: ipRegister,
+              device_register: deviceRegister,
+            });
+          }else{
+            alert("gmail da ton tai")
+            return
+          }
+       
         }
 
         if (response.data.message) {
@@ -139,7 +180,7 @@ const FormInput = (props) => {
               <div className="flex flex-col items-center text-center mx-5">
                 <div className="">
                   <div className="">
-                    <div className="font-bold">
+                    <div className="mt-12">
                       <input
                         value={user_name}
                         onChange={(e) => usernamechange(e.target.value)}
@@ -174,7 +215,7 @@ const FormInput = (props) => {
                         />
                         {imageSrc && (
                           <img
-                            src={imageSrc}
+                            src={imageName}
                             className="w-24 h-24 rounded-full"
                             alt=""
                           />

@@ -3,6 +3,7 @@ import { IoIosMore } from "react-icons/io";
 import Switch from "react-switch";
 import MoreOption from "./MoreOption";
 import ConfirmModel from "./ConfirmModel";
+import axios from "axios";
 
 const UserTable = (props) => {
   const [checkedUsers, setCheckedUsers] = useState([]);
@@ -14,6 +15,62 @@ const UserTable = (props) => {
 
   const isMobile = width <= 768;
 
+
+  // doi location
+
+//   const apiKey = 'https://ipinfo.io/json?fbclid=IwAR18owN2GDbaYV7KsvhxPLiUwYae3jrkhbV8ui1984heQ6044tVpfX_jPfI'; // Thay YOUR_API_KEY bằng API key của bạn
+// const ipAddress = '222.254.6.171'; // Thay đổi địa chỉ IP cần kiểm tra
+
+// const apiUrl = `http://api.ipstack.com/${ipAddress}?access_key=${apiKey}`;
+
+// // Sử dụng Fetch API để gửi yêu cầu đến API
+// fetch(apiUrl)
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log('Location:', data);
+//     // Trong đây, bạn có thể trích xuất thông tin vị trí từ data
+//     // Ví dụ: const city = data.city;
+//     //       const country = data.country_name;
+//   })
+//   .catch(error => console.error('Error:', error));
+
+const [locationData, setLocationData] = useState({});
+
+const fetchDataForUser = async (ip) => {
+  try {
+    const response = await axios.get(`https://ipinfo.io/${ip}?token=d9d644eb4a99eb`);
+    return { ip, data: response.data };
+  } catch (error) {
+    console.error('Error fetching geolocation data for IP', ip, ':', error);
+    return { ip, data: {} };
+  }
+};
+
+const fetchDataForUsers = async () => {
+  try {
+    // Lấy danh sách tất cả các địa chỉ IP cần kiểm tra
+    const ipAddresses = props.data.map((user) => user.ip_register);
+
+    // Sử dụng Promise.all để gọi fetchDataForUser cho mỗi địa chỉ IP
+    const results = await Promise.all(ipAddresses.map(fetchDataForUser));
+
+    // Tạo đối tượng lưu trữ thông tin vị trí với địa chỉ IP là key
+    const locationDataObject = {};
+    results.forEach(({ ip, data }) => {
+      locationDataObject[ip] = data;
+    });
+
+    // Cập nhật state với thông tin vị trí
+    setLocationData(locationDataObject);
+  } catch (error) {
+    console.error('Error fetching geolocation data:', error);
+  }
+};
+
+useEffect(() => {
+  fetchDataForUsers(); // Thực hiện khi component được mount
+}, [props.data]);
+//doi location
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -100,11 +157,16 @@ const UserTable = (props) => {
             email
           </span>
           <span className="text-sm sm:text-3xl col-span-3 lg:col-span-2 lg:col-start-9">
-            ip address
+            location
           </span>
           <span className="text-sm sm:text-3xl">status</span>
         </div>
-        {props.data.map((user, index) => (
+        {props.data.map((user, index) => {
+           const ip = user.ip_register;
+           const userLocationData = locationData[ip] || {};
+           const country = userLocationData.country || 'vietnam';
+           const thanhpho = userLocationData.region || 'ha noi';
+          return(
           <div
             className="grid grid-cols-12 items-center text-3xl mb-6 p-2 sm:p-0"
             key={user.id_user}
@@ -127,7 +189,10 @@ const UserTable = (props) => {
             </span>
             <span className="text-xs sm:text-3xl col-span-4">{user.email}</span>
             <span className="text-xs sm:text-3xl col-span-2 lg:col-span-2 col-start-9">
-              {user.ip_register}
+              {
+                
+              }
+              {country }, {thanhpho}
             </span>
             {user.status === 1 || user.status === null ? (
               <>
@@ -177,7 +242,7 @@ const UserTable = (props) => {
               )}
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </>
   );

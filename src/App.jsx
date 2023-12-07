@@ -30,6 +30,7 @@ import ListAddEvent from "./ver2/page/admin/ListAddEvent";
 import Overview from "./ver2/components/admin/overview/Overview";
 import ListInbox from "./ver2/page/admin/ListInbox";
 import SettingTable from "./ver2/components/admin/setting/SettingTable";
+import UserAction from "./ver2/components/admin/UserAction";
 
 function App() {
   const navigate = useNavigate();
@@ -89,6 +90,7 @@ function App() {
         <Route path="add-events" element={<ListAddEvent />} />
         <Route path="inbox" element={<ListInbox />} />
         <Route path="setting" element={<SettingTable />} />
+        <Route path="useraction" element={<UserAction />} />
         {/* <Route index element={<Historyv2 />} />
         <Route path="home" element={<Historyv2 />} />
         <Route path="event/:id" element={<Historyv2 />} />

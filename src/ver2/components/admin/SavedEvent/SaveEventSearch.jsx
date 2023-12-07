@@ -1,11 +1,12 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
 
-const SaveEventSearch = () => {
+const SaveEventSearch = (props) => {
     const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-
+ 
   const [searchInput, setSearchInput] = useState({
     id_saved: "",
     ten_su_kien: "",
@@ -16,11 +17,12 @@ const SaveEventSearch = () => {
     const searchInput = Object.fromEntries([...searchParams]);
     if (Object.keys(searchInput).length > 0) setSearchInput(searchInput);
   }, []);
-
-  const search = () => {
-    navigate(
-      `?id_saved=${searchInput.id_saved}&ten_su_kien=${searchInput.ten_su_kien}&id_user=${searchInput.id_user}`
-    );
+  
+  const search = async () => {
+    // const response = await axios.get(
+    //   `https://metatechvn.store/lovehistory/page/${currentPage}?id_user=${props.idtim}`
+    // );
+    // setData(response.data.list_sukien);
   };
   return (
     <>
@@ -49,8 +51,12 @@ const SaveEventSearch = () => {
             type="text"
             className="border-gray-400 rounded-xl border-2 text-2xl p-4 mr-8 w-[30rem]"
             placeholder="id user..."
-            onChange={(e) =>
+            onChange={(e) =>{
               setSearchInput({ ...searchInput, id_user: e.target.value })
+              props.handleGetId_user(e.target.value)
+
+            }
+             
             }
           />
           <button

@@ -23,6 +23,7 @@ const ListUser = () => {
         toast.error(response.data.message);
       } else {
         const data = response.data;
+        data.sort((a,b)=>b.id_user-a.id_user)
         setUsersData(data);
       }
     } catch (error) {

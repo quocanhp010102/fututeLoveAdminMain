@@ -17,7 +17,7 @@ const SavedEventTab = (props) => {
     <>
       <div
         style={{ backgroundImage: `url(${bg2})` }}
-        className="bg-no-repeat bg-cover rounded-[29px] h-[214px] bg-center lg:w-full lg:h-full border-2 border-blue-500"
+        className=" mt-5 bg-no-repeat bg-cover rounded-[29px] h-[214px] bg-center lg:w-full lg:h-full border-2 border-blue-500"
       >
         <div className="grid grid-cols-3">
           <div className="bg-no-repeat bg-cover lg:w-96 lg:h-96 w-48 h-48 relative">

@@ -8,6 +8,7 @@ import SavedEventAdd from "../../components/admin/SavedEvent/SavedEventAdd";
 
 const ListSavedEvent = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [id_user,setIduser]=useState(1)
   const [pageData, setPageData] = useState({
     page: Number,
     per_page: Number,
@@ -63,11 +64,14 @@ const ListSavedEvent = () => {
       setIsLoading(false);
     }
   }, []);
-
+  
+  const handleGetId_user=(id_user)=>{
+       setIduser(id_user)
+  }
   return (
     <>
       {isLoading && <Loading />}
-      <SaveEventSearch />
+      <SaveEventSearch handleGetId_user={handleGetId_user} />
       <div className="them-saved-sukien">
         <button
           className="d-block text-3xl text-white bg-blue-500 py-4 px-10 "
@@ -78,12 +82,13 @@ const ListSavedEvent = () => {
           + New saved-sukiens
         </button>
       </div>
-      <SavedEventAdd isShow={showForm} handleShowForm={handleShowForm} />
+      <SavedEventAdd   isShow={showForm} handleShowForm={handleShowForm} />
       {pageData.payload.length > 0 && (
         <div className="flex justify-center">
           <SavedEventTable
-            events={pageData}
-            handleChangePage={getEventPerPage}
+             idtim={id_user}
+            //events={pageData}
+            //handleChangePage={getEventPerPage}
           />
         </div>
       )}

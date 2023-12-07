@@ -1,0 +1,47 @@
+img{
+    width: 100px;
+    height: 100px;
+}
+.thesk{
+    background-color: #fff;
+}
+li{
+    list-style: none;
+}
+.spanpt{
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    margin: 5px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 128, 0);
+    color: azure;
+}
+.sotrang{
+    margin-top: 100px;
+}
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination-item {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .bg-cam{
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+   
+    background-color: rgb(231, 76, 9);
+    color: #fff;
+  }
+  .active{
+    background-color: blue;
+    color: #fff !important;
+  }
